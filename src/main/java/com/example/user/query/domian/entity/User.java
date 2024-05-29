@@ -18,31 +18,34 @@ import java.util.UUID;
 public class User {
     @Id
     @Column(name = "USER_ID")
-    private UUID userId;
+    private UUID id;
 
     @Column(name = "USER_PHONE")
-    private String userPhone;
+    private String phone;
 
     @Column(name = "USER_IMAGE")
-    private String userImage;
+    private String image;
 
     @Column(name = "USER_NAME")
-    private String userName;
+    private String name;
 
     @Column(name = "USER_DESC")
-    private String userDesc;
+    private String desc;
 
     @Column(name = "USER_CREATED_AT")
-    private Date userCreatedAt;
+    private Date createdAt;
 
     @Column(name = "USER_TOTAL_POST")
-    private Integer userTotalPost;
+    private Integer totalPost;
 
     @Column(name = "USER_TOTAL_LIKE")
-    private Integer userTotalLike;
+    private Integer totalLike;
+
+    @Column(name = "USER_TOTAL_FOLLOWER")
+    private Integer totalFollower;
 
     @Column(name = "USER_DISABLE")
-    private Boolean userDisable;
+    private Boolean isDisable;
 
 
     @OneToMany(mappedBy = "user")
@@ -56,28 +59,28 @@ public class User {
 
 
     public void update(User req) {
-        userImage = req.getUserImage();
-        userName = req.getUserName();
-        userDesc = req.getUserDesc();
+        image = req.getImage();
+        name = req.getName();
+        desc = req.getDesc();
     }
 
     public void increaseTotalPost() {
-        userTotalPost++;
+        totalPost++;
     }
     public void increaseTotalLike() {
-        userTotalLike++;
+        totalLike++;
     }
 
     public void decreaseTotalPost() {
-        if(userTotalPost <= 0) throw new IllegalArgumentException();
-        userTotalPost--;
+        if(totalPost <= 0) throw new IllegalArgumentException();
+        totalPost--;
     }
     public void decreaseTotalLike() {
-        if(userTotalLike <= 0) throw new IllegalArgumentException();
-        userTotalLike--;
+        if(totalLike <= 0) throw new IllegalArgumentException();
+        totalLike--;
     }
 
     public void disable() {
-        userDisable = true;
+        isDisable = true;
     }
 }

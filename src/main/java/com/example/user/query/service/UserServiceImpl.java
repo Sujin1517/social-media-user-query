@@ -34,52 +34,52 @@ public class UserServiceImpl implements UserService{
     @Override
     public void saveUser(User req) {
         User user = User.builder()
-                .userId(req.getUserId())
-                .userPhone(req.getUserPhone())
-                .userImage(req.getUserImage())
-                .userName(req.getUserName())
-                .userDesc(req.getUserDesc())
-                .userCreatedAt(req.getUserCreatedAt())
-                .userTotalPost(0)
-                .userTotalLike(0)
-                .userDisable(false)
+                .id(req.getId())
+                .phone(req.getPhone())
+                .image(req.getImage())
+                .name(req.getName())
+                .desc(req.getDesc())
+                .createdAt(req.getCreatedAt())
+                .totalPost(0)
+                .totalLike(0)
+                .isDisable(false)
                 .build();
         userRepository.save(user);
     }
 
     @Override
     public void updateUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.update(req);
     }
 
     @Override
     public void deleteUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.disable();
     }
 
     @Override
     public void increaseLikeCountByUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.increaseTotalLike();
     }
 
     @Override
     public void increasePostCountByUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.increaseTotalPost();
     }
 
     @Override
     public void decreaseLikeCountByUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.decreaseTotalLike();
     }
 
     @Override
     public void decreasePostCountByUser(User req) {
-        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(req.getId()).orElseThrow(IllegalArgumentException::new);
         user.decreaseTotalPost();
     }
 
