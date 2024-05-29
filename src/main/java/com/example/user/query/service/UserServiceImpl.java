@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,7 +33,18 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void saveUser(User req) {
-
+        User user = User.builder()
+                .userId(req.getUserId())
+                .userPhone(req.getUserPhone())
+                .userImage(req.getUserImage())
+                .userName(req.getUserName())
+                .userDesc(req.getUserDesc())
+                .userCreatedAt(req.getUserCreatedAt())
+                .userTotalPost(0)
+                .userTotalLike(0)
+                .userDisable(false)
+                .build();
+        userRepository.save(user);
     }
 
     @Override
