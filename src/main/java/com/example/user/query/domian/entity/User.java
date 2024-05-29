@@ -60,4 +60,8 @@ public class User {
         userName = req.getUserName();
         userDesc = req.getUserDesc();
     }
+
+    public void disable() {
+        userDisable = true;
+    }
 }

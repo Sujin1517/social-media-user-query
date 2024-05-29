@@ -55,7 +55,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(User req) {
-
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.disable();
     }
 
     @Override
