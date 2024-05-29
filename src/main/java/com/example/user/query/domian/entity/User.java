@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter @Builder
 @Table(name = "USERS")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "USER_ID")
     private UUID userId;
 

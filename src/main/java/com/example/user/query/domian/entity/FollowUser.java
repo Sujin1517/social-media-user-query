@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "FOLLOW_USERS")
 public class FollowUser {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FOLLOW_USER_ID")
     private Long followUserName;
 

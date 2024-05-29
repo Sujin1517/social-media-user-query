@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "BLOCK_USERS")
 public class BlockUser {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BLOCK_USER_ID")
     private Long blockUserId;
 
