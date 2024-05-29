@@ -53,4 +53,11 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<BlockKeyword> blockKeyword;
+
+
+    public void update(User req) {
+        userImage = req.getUserImage();
+        userName = req.getUserName();
+        userDesc = req.getUserDesc();
+    }
 }

@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User req) {
-
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.update(req);
     }
 
     @Override
