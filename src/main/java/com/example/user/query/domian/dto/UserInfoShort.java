@@ -1,5 +1,8 @@
 package com.example.user.query.domian.dto;
 
+import com.example.user.query.domian.entity.BlockUser;
+import com.example.user.query.domian.entity.FollowUser;
+
 import java.util.UUID;
 
 public record UserInfoShort(
@@ -7,4 +10,18 @@ public record UserInfoShort(
         String image,
         String name
 ) {
+    public static UserInfoShort fromFollower(FollowUser user){
+        return new UserInfoShort(
+                user.getFollower().getId(),
+                user.getFollower().getImage(),
+                user.getFollower().getName()
+        );
+    }
+    public static UserInfoShort fromBlockedUser(BlockUser user){
+        return new UserInfoShort(
+                user.getBlocked().getId(),
+                user.getBlocked().getImage(),
+                user.getBlocked().getName()
+        );
+    }
 }

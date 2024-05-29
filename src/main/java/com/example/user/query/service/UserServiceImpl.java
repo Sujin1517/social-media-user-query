@@ -1,6 +1,8 @@
 package com.example.user.query.service;
 
 import com.example.user.query.domian.dto.KafkaStatus;
+import com.example.user.query.domian.dto.UserInfoAll;
+import com.example.user.query.domian.dto.UserInfoShort;
 import com.example.user.query.domian.entity.User;
 import com.example.user.query.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -8,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -17,18 +19,35 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     @Override
-    public User getUserById(String id) {
-        return null;
+    public UserInfoAll getUserById(UUID id) {
+        User user = userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return new UserInfoAll(
+                user.getId(),
+                user.getPhone(),
+                user.getImage(),
+                user.getName(),
+                user.getDesc(),
+                user.getCreatedAt(),
+                user.getTotalPost(),
+                user.getTotalLike(),
+                user.getTotalFollower()
+        );
     }
 
     @Override
-    public List<User> getFollowingUsersById(String id) {
-        return List.of();
+    public List<UserInfoShort> getFollowingUsersById(UUID id) {
+        User user = userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return user.getFollowUser().stream()
+                .map(UserInfoShort::fromFollower)
+                .toList();
     }
 
     @Override
-    public List<User> getBlockedUsersById(String id) {
-        return List.of();
+    public List<UserInfoShort> getBlockedUsersById(UUID id) {
+        User user = userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return user.getBlockUser().stream()
+                .map(UserInfoShort::fromBlockedUser)
+                .toList();
     }
 
     @Override
