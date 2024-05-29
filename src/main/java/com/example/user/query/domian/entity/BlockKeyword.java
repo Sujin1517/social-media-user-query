@@ -11,17 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-@Table(name = "FOLLOW_USERS")
-public class FollowUser {
+@Table(name = "BLOCK_KEYWORD")
+public class BlockKeyword {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "FOLLOW_USER_ID")
-    private Long followUserName;
+    @Column(name = "BLOCK_KEYWORD_ID")
+    private Long blockKeywordId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FOLLOWER_ID")
-    private User follower;
+    @Column(name = "BLOCK_KEYWORD")
+    private String blockKeyword;
 }
