@@ -61,22 +61,26 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void increaseLikeCountByUser(User req) {
-
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.increaseTotalLike();
     }
 
     @Override
     public void increasePostCountByUser(User req) {
-
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.increaseTotalPost();
     }
 
     @Override
-    public void decreaseLikeCountByUser(User user) {
-
+    public void decreaseLikeCountByUser(User req) {
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.decreaseTotalLike();
     }
 
     @Override
-    public void decreasePostCountByUser(User user) {
-
+    public void decreasePostCountByUser(User req) {
+        User user = userRepository.findById(req.getUserId()).orElseThrow(IllegalArgumentException::new);
+        user.decreaseTotalPost();
     }
 
     @Override

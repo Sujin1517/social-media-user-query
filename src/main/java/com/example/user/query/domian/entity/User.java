@@ -61,6 +61,22 @@ public class User {
         userDesc = req.getUserDesc();
     }
 
+    public void increaseTotalPost() {
+        userTotalPost++;
+    }
+    public void increaseTotalLike() {
+        userTotalLike++;
+    }
+
+    public void decreaseTotalPost() {
+        if(userTotalPost <= 0) throw new IllegalArgumentException();
+        userTotalPost--;
+    }
+    public void decreaseTotalLike() {
+        if(userTotalLike <= 0) throw new IllegalArgumentException();
+        userTotalLike--;
+    }
+
     public void disable() {
         userDisable = true;
     }
