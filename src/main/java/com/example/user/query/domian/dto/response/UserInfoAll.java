@@ -1,4 +1,4 @@
-package com.example.user.query.domian.dto;
+package com.example.user.query.domian.dto.response;
 
 import java.util.Date;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.example.user.query.domian.dto;
+package com.example.user.query.domian.dto.response;
 
 import com.example.user.query.domian.entity.BlockUser;
 import com.example.user.query.domian.entity.FollowUser;
