@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService{
                 .createdAt(req.getCreatedAt())
                 .totalPost(0)
                 .totalLike(0)
+                .totalFollower(0)
                 .isDisable(false)
                 .build();
         userRepository.save(user);
