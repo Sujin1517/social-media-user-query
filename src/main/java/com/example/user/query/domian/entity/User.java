@@ -20,6 +20,9 @@ public class User {
     @Column(name = "USER_ID")
     private UUID id;
 
+    @Column(name = "USER_PASSWORD")
+    private String password;
+
     @Column(name = "USER_PHONE")
     private String phone;
 
